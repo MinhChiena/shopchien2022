@@ -1,3 +1,4 @@
 # shopchien2022
-user: admin
-passwword: admin
+user: admin <br>
+passwword: admin<br>
+<p>name project "shop"</p>
