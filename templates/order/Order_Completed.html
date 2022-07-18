@@ -1,0 +1,60 @@
+{% extends 'home/homebase.html' %}
+{% load static %}
+
+{% block title %} Thanh toán {% endblock %}
+
+
+{% block body %}
+
+            <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                    <li class="breadcrumb-item active">Trạng thái</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3">
+                        </div>
+                        <div class="col-lg-6">
+
+                            <table class="table">
+                              <thead>
+                                <tr>
+
+                                  <th scope="col"><h2>Dear  {{ user.first_name }} {{  user.last_name }}</h2></th>
+
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+
+
+                                  <td><h4>Cám ơn bạn đã đặt hàng</h4></td>
+
+                                </tr>
+                                <tr>
+
+                                  <td><h4>Mã số hóa đơn của bạn : </h4></td>
+                                  <td><h4 style="color: red;"> {{ ordercode }}</h4></td>
+                                </tr>
+                                <tr>
+
+
+                                  <td><h4>Xin cám ơn</h4></td>
+
+                                </tr>
+                              </tbody>
+                            </table>
+                            </div>
+                        <div class="col-lg-3">
+                        </div>
+                    </div>
+        </div>
+        {% include 'home/footer.html' %}
+{% endblock %}

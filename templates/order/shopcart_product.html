@@ -1,0 +1,105 @@
+{% extends 'home/homebase.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} giỏ hàng {% endblock %}
+
+
+{% block body %}
+
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang Chủ</a></li>
+                    <li class="breadcrumb-item"><a href="/san-pham/">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Giỏ hàng</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Tổng</th>
+                                            <th>Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for rs in shopcart %}
+                                        <tr>
+                                            <td>
+                                                <div class="img">
+                                                    <a href="#"><img src="{{ rs.product.image.url }}" alt="Image"></a>
+                                                    <p>{{ rs.product.title }}</p>
+                                                </div>
+                                            </td>
+                                            <td>{{ rs.price | intcomma:False }}</td>
+                                            <td>
+                                                <div class="qty">
+{#                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>#}
+                                                    <input type="text" value="{{ rs.quantity }}">
+{#                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>#}
+                                                </div>
+                                            </td>
+                                            <td>{{ rs.amount | intcomma:False }}</td>
+                                            <td><button><a href="/order/deletefromcart/{{ rs.id }}" onclick="return confirm('bạn có thực sự muốn xóa?')"><i class="fa fa-trash"></i></a></button></td>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            {% if shopcart.exists %}
+                            {% else %}
+                                <p style="text-align: center; padding-top: 10px;">Bạn chưa có sản phẩm trong giỏ hàng</p>
+                            {% endif %}
+{#                                <p>{{ shopcart.count }}</p>#}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="cart-page-inner">
+                            <div class="row">
+{#                                <div class="col-md-12">#}
+{#                                    <div class="coupon">#}
+{#                                        <input type="text" placeholder="Coupon Code">#}
+{#                                        <button>Apply Code</button>#}
+{#                                    </div>#}
+{#                                </div>#}
+                                <div class="col-md-12">
+                                    <div class="cart-summary">
+                                        <div class="cart-content">
+                                            <h1>Chi tiết hóa đơn</h1>
+                                            <p>Tổng giá sản phẩm<span>{{ total }}</span></p>
+                                            <p>Phí ship<span>0 VND</span></p>
+                                            <h2>Tổng<span>{{ total }}</span></h2>
+                                        </div>
+                                        {% if shopcart.exists %}
+                                        <div class="cart-btn">
+                                            <button><a href="/order/orderproduct">Thanh toán</a></button>
+{#                                            <button>Gọi cho chúng tôi</button>#}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cart End -->
+        {% include 'home/footer.html' %}
+{% endblock %}

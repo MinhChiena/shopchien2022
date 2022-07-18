@@ -1,0 +1,166 @@
+{% extends 'home/homebase.html' %}
+{% load static %}
+
+{% block title %} Thanh toán {% endblock %}
+
+
+{% block body %}
+
+            <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="/san-pham">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Thanh toán</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Checkout Start -->
+        <div class="checkout">
+            <div class="container-fluid">
+                <div class="row">
+                    <form action="" method="post" style="display: flex !important;">
+                        {% csrf_token %}
+                    <div class="col-lg-8">
+
+                        <div class="checkout-inner">
+                            <div class="billing-address">
+                                <h2>Thông tin địa chỉ</h2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Họ</label>
+                                        <input class="form-control" type="text" name="first_name" placeholder="Họ" value="{{ user.first_name}}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Tên</label>
+                                        <input class="form-control" name="last_name" type="text" placeholder="Tên" value="{{ user.last_name}}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>E-mail</label>
+                                        <input class="form-control" type="text" name="address" placeholder="E-mail" value="{{ profile.user.email}}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Số điện thoại</label>
+                                        <input class="form-control" name="phone" type="text" placeholder="Số điện thoại" value="{{ profile.phone}}">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Địa chỉ cụ thể</label>
+                                        <input class="form-control" name="address" type="text" placeholder="Địa chỉ" value="{{ profile.address}}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Quốc Gia</label>
+                                        <select class="custom-select">
+{#                                            <option selected>United States</option>#}
+                                            <option value="{{ profile.country }}" selected>{{ profile.country }}</option>
+                                            <option>Nederland </option>
+{#                                            <option>China</option>#}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Thành phố</label>
+                                        <input class="form-control" name="city" type="text" value="{{ profile.city }}">
+                                    </div>
+{#                                    <div class="col-md-6">#}
+{#                                        <label>State</label>#}
+{#                                        <input class="form-control" type="text" placeholder="State">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-6">#}
+{#                                        <label>ZIP Code</label>#}
+{#                                        <input class="form-control" type="text" placeholder="ZIP Code">#}
+{#                                    </div>#}
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="checkout-inner">
+                            <div class="checkout-summary">
+                                <h1>Tổng hóa đơn</h1>
+                                            <p>Tổng giá sản phẩm<span>{{ total }}</span></p>
+                                            <p>Phí ship<span>0 VND</span></p>
+                                            <h2>Tổng<span>{{ total }}</span></h2>
+                            </div>
+
+                            <div class="checkout-payment">
+                                <div class="payment-methods">
+                                    <h1>Phương thức thanh toán</h1>
+                                    <div class="payment-method">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="payment-1" name="payment">
+                                            <label class="custom-control-label" for="payment-1">Paypal</label>
+                                        </div>
+                                        <div class="payment-content" id="payment-1-show">
+                                            <p>
+                                                Chấp nhập các loại thẻ visa theo khu vực quốc gia
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="payment-method">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="payment-2" name="payment">
+                                            <label class="custom-control-label" for="payment-2">Trả sau</label>
+                                        </div>
+                                        <div class="payment-content" id="payment-2-show">
+                                            <p>
+                                                Nhận hàng kiểm tra hàng & Thanh toán
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="payment-method">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="payment-3" name="payment">
+                                            <label class="custom-control-label" for="payment-3">Chuyển khoản trực tiếp</label>
+                                        </div>
+                                        <div class="payment-content" id="payment-3-show">
+                                            <p>
+                                                chuyển khoản trực tiếp
+                                            </p>
+                                        </div>
+                                    </div>
+{#                                    <div class="payment-method">#}
+{#                                        <div class="custom-control custom-radio">#}
+{#                                            <input type="radio" class="custom-control-input" id="payment-4" name="payment">#}
+{#                                            <label class="custom-control-label" for="payment-4">Direct Bank Transfer</label>#}
+{#                                        </div>#}
+{#                                        <div class="payment-content" id="payment-4-show">#}
+{#                                            <p>#}
+{#                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.#}
+{#                                            </p>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="payment-method">#}
+{#                                        <div class="custom-control custom-radio">#}
+{#                                            <input type="radio" class="custom-control-input" id="payment-5" name="payment">#}
+{#                                            <label class="custom-control-label" for="payment-5">Cash on Delivery</label>#}
+{#                                        </div>#}
+{#                                        <div class="payment-content" id="payment-5-show">#}
+{#                                            <p>#}
+{#                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.#}
+{#                                            </p>#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                </div>
+                                <div class="checkout-btn">
+                                    <button type="submit">Thanh toán</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <!-- Checkout End -->
+
+
+
+
+        {% include 'home/footer.html' %}
+{% endblock %}

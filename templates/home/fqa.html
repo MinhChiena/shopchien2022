@@ -1,0 +1,51 @@
+
+{% extends 'home/homebase.html' %}
+
+{% block title %} {{ setting.title }} Liên hệ {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+{#                    <li class="breadcrumb-item"><a href="#">Products</a></li>#}
+                    <li class="breadcrumb-item active">Câu hỏi thường gặp</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+        <div class="contact">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>
+                          <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Sản phẩm có được bảo hành</a>
+                          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Sản phẩm lỗi</button>
+                          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Xem tất cả</button>
+                        </p>
+                        <div class="row">
+                          <div class="col">
+                            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                              <div class="card card-body">
+                                Sản phẩm chúng tôi được kiểm định qua nhiều khâu sàn lọc để ra sản phẩm tốt nhất, nếu có vấn đề gì về sản phẩm, có thể liên hệ tới chúng tôi.
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="collapse multi-collapse" id="multiCollapseExample2">
+                              <div class="card card-body">
+                                Khi khách hàng đã sử dụng từ 1 từ 3 tháng trở về trước, nếu sản phẩm có vẫn đề do nhà sản xuất hãy liên hệ tới chúng tôi
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   {% include 'home/footer.html' %}
+{% endblock %}

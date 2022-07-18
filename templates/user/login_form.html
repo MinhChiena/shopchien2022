@@ -1,0 +1,68 @@
+{% extends 'home/homebase.html' %}
+{% load static %}
+{% block title %} login {% endblock %}
+{% block body %}
+     <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+{#                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>#}
+                    <li class="breadcrumb-item active">Đăng nhập & đăng ký</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-lg-6">
+                        {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                        {% endif %}
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+                        <div class="login-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>E-mail / Tên tài khoản</label>
+                                    <input class="form-control" name="username" type="text" placeholder="E-mail / Tên tài khoản">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Mật khẩu</label>
+                                    <input class="form-control" name="password" type="password" placeholder="Mật khẩu">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="newaccount">
+                                        <label class="custom-control-label" for="newaccount">giữ đăng nhập</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn">Đăng nhập</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+{#                    <div class="col-lg-6">#}
+{#                        <img src="{% static 'img/wel.png' %}" alt="hello">#}
+{##}
+{#                    </div>#}
+                </div>
+            </div>
+        </div>
+        <!-- Login End -->
+         {% include 'home/footer.html' %}
+{% endblock %}

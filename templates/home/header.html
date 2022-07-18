@@ -1,0 +1,187 @@
+{% load static %}
+
+ <!-- Top bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <i class="fa fa-envelope"></i>
+                        nhat2020@gmail.com
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fa fa-phone-alt"></i>
+                       online
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top bar End -->
+        
+        <!-- Nav Bar Start -->
+        <div class="nav">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto">
+
+                            <a href="/" class="nav-item nav-link active">Trang Chủ</a>
+                            <a href="/ve-chung-toi/" class="nav-item nav-link">Gới thiệu</a>
+                            <a href="/san-pham/" class="nav-item nav-link">Sản Phẩm</a>
+{#                            <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>#}
+                            {% if user.id is not None %}
+                            <a href="/gio-hang/" class="nav-item nav-link">Giỏ Hàng</a>
+                            {% if shopcart.exists %}
+                            <a href="/order/orderproduct/" class="nav-item nav-link">Thanh Toán</a>
+                            {% endif %}
+                            <a href="/user/" class="nav-item nav-link">Tài Khoản</a>
+                            {% endif %}
+                            <a href="/tin-tuc/" class="nav-item nav-link">Tin Tức</a>
+                            <a href="/lien-he/" class="nav-item nav-link">Liên Hệ</a>
+                            <a href="/cau-hoi-thuong-gap/" class="nav-item nav-link">Câu hỏi</a>
+
+{#
+                            </div>
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                {% if user.id is not None %}
+{#                                <img src="{{ request.session.userimage }}" style="height: 40px; border-radius: 10px; width: 32px;">#}
+                                <a href="/user/" class="nav-link dropdown-toggle" data-toggle="dropdown">Tên Tài Khoản : {{ user.first_name }}</a>
+                                <div class="dropdown-menu">
+                                <a href="/logout/" class="dropdown-item">Đăng Xuất</a>
+                                <a href="/user/" class="dropdown-item">Thông Tin</a>
+                                <a href="/user/update" class="dropdown-item">Thay Đổi Thông Tin</a>
+                                <a href="/user/password" class="dropdown-item">Đổi Mật Khẩu</a>
+                                {% else %}
+
+
+                                    <a href="/login/" class="dropdown-item">Đăng Nhập</a>
+                                    <a href="/dang-ky/" class="dropdown-item">Đăng Ký</a>
+
+                                {% endif %}
+
+                                </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Nav Bar End -->      
+        
+        <!-- Bottom Bar Start -->
+        <div class="bottom-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="{% static 'img/logo1 - Copy.png' %}" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+{#                    <form action="/search/" method="post">#}
+{#                        {% csrf_token %}#}
+{#                    <div class="col-md-2">#}
+{#                                            <div class="product-short">#}
+{#                                                <div class="dropdown">#}
+{#                                                    <div class="dropdown-toggle" data-toggle="dropdown">Product short by</div>#}
+{#                                                    <div class="dropdown-menu dropdown-menu-right">#}
+{#                                                        <a href="#" class="dropdown-item">Newest</a>#}
+{#                                                        <a href="#" class="dropdown-item">Popular</a>#}
+{#                                                        <a href="#" class="dropdown-item">Most sale</a>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                    <div class="col-md-4">#}
+{#                        <div class="search">#}
+{#                            <input id="query" name="query" type="text" placeholder="Search">#}
+{#                            <button><i class="fa fa-search"></i></button>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    </form>#}
+                     <script>
+
+                      $(function() {
+                        $("#query").autocomplete({
+                          source: "search_auto",
+                          select: function (event, ui) { //item selected
+                            AutoCompleteSelectHandler(event, ui)
+                          },
+                          minLength: 2,
+                        });
+                      });
+
+                      function AutoCompleteSelectHandler(event, ui)
+                      {
+                        var selectedObj = ui.item;
+                      }
+
+                    </script>
+
+
+                <div class="col-md-6">
+                    <form action="/search/" method="post">
+                                {% csrf_token %}
+
+                        <div class="search" >
+                            <select id="nhat123" name="catid" class="input search-categories">
+                                <option class="dropdown-toggle" value="0">Tất cả sản phẩm</option>
+
+                                    {% load mptt_tags %}
+
+{#                                    {% recursetree category %}#}
+{##}
+{#                                        {% if node.is_leaf_node %}#}
+{##}
+{#                                        <option value="{{ node.id }}">{{ node.title }}</option>#}
+{##}
+{#                                        {% endif %}#}
+{##}
+{#                                        {% if not node.is_leaf_node %}#}
+{#                                            <optgroup class="dropdown-item" label="{{ node.title }}">#}
+{#                                                {{children}}#}
+{#                                            </optgroup>#}
+{#                                        {% endif %}#}
+{#                                    {% endrecursetree %}#}
+
+                            </select>
+
+                            <input id="query" name="query" type="text" placeholder="Tìm kiếm...">
+
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+
+                    </form>
+                </div>
+                    <div class="col-md-3">
+                        <div class="user">
+                            <a>
+                                 {% if messages %}
+                                                    {% for message in messages %}
+                                                        <a class="{{message.tags}}" role="alert">
+                                                            <a style="color: red;font-size: 12px;color: red;padding-right: 5px;">{{ message }}</a>
+                                                        </a>
+                                                    {% endfor %}
+                                 {% endif %}
+                                </a>
+                            <a href="/" class="btn wishlist">
+                                <i class="fa fa-heart"></i>
+                                <span>(0)</span>
+                            </a>
+                            <a href="/gio-hang/" class="btn cart">
+                                <i class="fa fa-shopping-cart"></i>
+{#                                {% load myapptags %}#}
+{#                               /shopcart/#}
+                                <span>{{ shopcart.count }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Bar End -->       

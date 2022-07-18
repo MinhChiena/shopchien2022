@@ -1,0 +1,163 @@
+{% extends 'home/homebase.html' %}
+{% block title %} Thông tin {% endblock %}
+{% block body %}
+     <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+{#                    <li class="breadcrumb-item"><a href="#">Products</a></li>#}
+                    <li class="breadcrumb-item active">Thông tin tài khoản</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+         <!-- My Account Start -->
+        <div class="my-account">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Thông tin</a>
+                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Lịch sử mua hàng</a>
+{#                            <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Payment Method</a>#}
+                            <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>Lịch sử bình luận</a>
+{#                            <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Account Details</a>#}
+                            <a class="nav-link" href="/logout/"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
+                                <h4>Thông tin người dùng</h4>
+
+                                <p>
+                                    Họ và tên :{{ user.first_name}} {{ user.last_name}}
+                                </p>
+                                <p><img class="css_txt002" src="{{ profile.image.url }}" style="border-radius: 45px; height: 200px "></p>
+                                 <h5>Thông tin địa chỉ thanh toán</h5>
+                                        <p>Địa chỉ thanh toán {{ profile.address}}</p>
+                                        <p>Số điện thoại: {{ profile.phone}}</p>
+                                <button class="btn"><a href="/user/update/">Sửa thông tin</a></button>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                 <th class="text-left">ID </th>
+                                                <th class="text-left">Tên </th>
+                                                <th class="text-left">Họ </th>
+                                                <th class="text-left">Tổng </th>
+                                                <th class="text-left">Trạng thái </th>
+                                                <th class="text-left">ngày mua </th>
+                                                <th class="text-left">xem chi tiết </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for rs in orders %}
+                                            <tr>
+                                                <td class="text-left">{{ rs.id}} </td>
+                                            <td class="text-left">{{ rs.first_name}} </td>
+                                            <td class="text-left">{{ rs.last_name}} </td>
+                                            <td class="text-left">{{ rs.total}} </td>
+                                            <td class="text-left">{{ rs.status}} </td>
+                                            <td class="text-left">{{ rs.create_at}} </td>
+                                            <td class="text-left"><a class="primary-btn" href="/user/orderdetail/{{ rs.id }}"> Xem </a></td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+{#                            <div class="tab-pane fade" id="payment-tab" role="tabpanel" aria-labelledby="payment-nav">#}
+{#                                <h4>Payment Method</h4>#}
+{#                                <p>#}
+{#                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque.#}
+{#                                </p>#}
+{#                            </div>#}
+                            <div class="tab-pane fade" id="address-tab" role="tabpanel" aria-labelledby="address-nav">
+                                <h4>Bình luận</h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="shopping-cart-table table">
+                                            <tr>
+                                                <th class="text-left">Sản phẩm </th>
+                                                <th class="text-left">Đánh giá </th>
+                                                <th class="text-left">Tiêu đề </th>
+                                                <th class="text-left">nội dung </th>
+                                                <th class="text-left">Trạng thái </th>
+                                                <th class="text-left">Ngày </th>
+                                                <th class="text-left">Xem chi tiết </th>
+                                            </tr>
+                                            {% for rs in comments %}
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}">
+                                                            <strong> {{ rs.product.title}}</strong>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-left">{{ rs.rate}} </td>
+                                                    <td class="text-left">{{ rs.subject}} </td>
+                                                    <td class="text-left">{{ rs.comment}} </td>
+                                                    <td class="text-left">{{ rs.status}} </td>
+                                                    <td class="text-left">{{ rs.create_at}} </td>
+                                                    <td class="text-left">
+                                                        <a class="primary-btn" href="/user/deletecomment/{{ rs.id }}" onclick="return confirm('Will be Delete ! Are you sure?')"> Xem </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+{#                            <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">#}
+{#                                <h4>Account Details</h4>#}
+{#                                <div class="row">#}
+{#                                    <div class="col-md-6">#}
+{#                                        <input class="form-control" type="text" placeholder="First Name">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-6">#}
+{#                                        <input class="form-control" type="text" placeholder="Last Name">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-6">#}
+{#                                        <input class="form-control" type="text" placeholder="Mobile">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-6">#}
+{#                                        <input class="form-control" type="text" placeholder="Email">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-12">#}
+{#                                        <input class="form-control" type="text" placeholder="Address">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-12">#}
+{#                                        <button class="btn">Update Account</button>#}
+{#                                        <br><br>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <h4>Password change</h4>#}
+{#                                <div class="row">#}
+{#                                    <div class="col-md-12">#}
+{#                                        <input class="form-control" type="password" placeholder="Current Password">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-6">#}
+{#                                        <input class="form-control" type="text" placeholder="New Password">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-6">#}
+{#                                        <input class="form-control" type="text" placeholder="Confirm Password">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-12">#}
+{#                                        <button class="btn">Save Changes</button>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- My Account End -->
+
+         {% include 'home/footer.html' %}
+{% endblock %}

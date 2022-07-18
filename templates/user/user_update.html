@@ -1,0 +1,90 @@
+{% extends 'home/homebase.html' %}
+{% block title %} login {% endblock %}
+{% block body %}
+     <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+{#                    <li class="breadcrumb-item"><a href="#">Products</a></li>#}
+                    <li class="breadcrumb-item active">Cập nhập thông tin</li>
+                </ul>
+            </div>
+        </div>
+    <div class="breadcrumb-wrap">
+        <div class="container-fluid">
+            <form method="POST" enctype = "multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {{ user_form.as_p  }}
+                                {{ profile_form.as_p  }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="primary-btn" type="submit">Cập Nhập</button>
+                            </div>
+            </form>
+        </div>
+    </div>
+        <!-- Breadcrumb End -->
+
+
+{#            <div class="container-fluid">#}
+{#                <div class="row">#}
+{#                    <div class="col-lg-6">#}
+{#                                        <div>#}
+{#                                        <h4>Account Details</h4>#}
+{#                                            <form method="POST" enctype = "multipart/form-data">#}
+{#                                                {% csrf_token %}#}
+{#                                                <div class="row">#}
+{#                                                    <div class="col-md-6">#}
+{#                                                        <input class="form-control" type="text" name="first_name" value="{{ user_form.first_name }}"  placeholder="First Name" >#}
+{#                                                        {{ user_form.first_name }}#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-6">#}
+{#                                                        {{ user_form.last_name }}#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-6">#}
+{#                                                        {{ user_form.email }}#}
+{#                                                        <input class="form-control" type="text" placeholder="Mobile">#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-6">#}
+{#                                                        {{ profile_form.phone }}#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-12">#}
+{#                                                        {{ profile_form.address }}#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-6">#}
+{#                                                        {{ profile_form.image }}#}
+{#                                                    </div>#}
+{##}
+{#                                                    <div class="col-md-6">#}
+{#                                                        {{ profile_form.city }}#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-12">#}
+{#                                                        <button class="primary-btn" type="submit">Update</button>#}
+{#                                                        <br><br>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                                <h4>Password change</h4>#}
+{#                                                <div class="row">#}
+{#                                                    <div class="col-md-12">#}
+{#                                                        <input class="form-control" type="password" placeholder="Current Password">#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-6">#}
+{#                                                        <input class="form-control" type="text" placeholder="New Password">#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-6">#}
+{#                                                        <input class="form-control" type="text" placeholder="Confirm Password">#}
+{#                                                    </div>#}
+{#                                                    <div class="col-md-12">#}
+{#                                                        <button class="btn">Save Changes</button>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </form>#}
+{#                                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+         {% include 'home/footer.html' %}
+{% endblock %}

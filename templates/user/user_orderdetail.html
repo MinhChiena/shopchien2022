@@ -1,0 +1,133 @@
+{% extends 'home/homebase.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} gio hang {% endblock %}
+
+
+{% block body %}
+
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang Chủ</a></li>
+{#                    <li class="breadcrumb-item"><a href="#">Products</a></li>#}
+                    <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                <p>hello</p>
+                                <table class="shopping-cart-table table">
+                            <tr>
+                                <th class="text-left">Họ và Tên</th>
+                                <td class="text-left">{{ order.first_name}} {{ order.last_name }} </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Số điện thoại</th>
+                                <td class="text-left">{{ order.phone}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Địa chỉ</th>
+                                <td class="text-left">{{ order.address}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Thành phố</th>
+                                <td class="text-left">{{ order.city}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Quốc Gia</th>
+                                <td class="text-left">{{ order.country}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Trạng thái đoen hàng</th>
+                                <td class="text-left">{{ order.status}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-left">Ngày</th>
+                                <td class="text-left">{{ order.create_at}}</td>
+                            </tr>
+
+                            <th class="text-left">Ghi chú của shop</th>
+                            <td class="text-left">{{ order.adminnote}}</td>
+                            </tr>
+
+                        </table>
+
+                                <div class="section-title">
+                            <h4 class="title">Danh sách sản phẩm đã mua</h4>
+                        </div>
+
+                        <table class="shopping-cart-table table">
+                            <tr>
+                                <th class="text-left">Id </th>
+                                <th class="text-left">Tên sản phẩm</th>
+                                <th class="text-left">Giá </th>
+                                <th class="text-left">Số lượng </th>
+                                <th class="text-left">Tổng tiền </th>
+                                <th class="text-left">Trạng thái </th>
+                                <th class="text-left">Ngày </th>
+                            </tr>
+                            {% for rs in orderitems %}
+                                <tr>
+                                    <td class="text-left">
+                                    <img src="{{ rs.product.image.url }}" height="80px">
+                                    </td>
+                                    <td class="text-left">{{ rs.product.title}}</td>
+                                    <td class="text-left">{{ rs.price | intcomma:False}} </td>
+                                    <td class="text-left">{{ rs.quantity}} </td>
+                                    <td class="text-left">{{ rs.amount | intcomma:False}} </td>
+                                    <td class="text-left">{{ rs.status}} </td>
+                                    <td class="text-left">{{ rs.create_at}} </td>
+                                </tr>
+                            {% endfor %}
+
+                        </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="cart-page-inner">
+                            <div class="row">
+{#                                <div class="col-md-12">#}
+{#                                    <div class="coupon">#}
+{#                                        <input type="text" placeholder="Coupon Code">#}
+{#                                        <button>Apply Code</button>#}
+{#                                    </div>#}
+{#                                </div>#}
+                                <div class="col-md-12">
+
+                                    <div class="cart-summary">
+                                        <div class="cart-content">
+                                            <h1>Chi tiết hóa đơn</h1>
+                                            <p>Tổng<span>{{ total1 | intcomma:False }}</span></p>
+                                            <p>Phí ship<span>0vnd</span></p>
+                                            <h2>tổng tiền<span>{{ total1 | intcomma:False }}</span></h2>
+                                        </div>
+                                        <div class="cart-btn">
+                                            <button><a href="/">Trở về trang chủ</a></button>
+{#                                            <button>Checkout</button>#}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cart End -->
+        {% include 'home/footer.html' %}
+{% endblock %}

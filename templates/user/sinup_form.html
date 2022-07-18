@@ -1,0 +1,104 @@
+{% extends 'home/homebase.html' %}
+{% block title %} sinup {% endblock %}
+{% block body %}
+     <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+{#                    <li class="breadcrumb-item"><a href="#">Products</a></li>#}
+                    <li class="breadcrumb-item active">Đăng ký</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                        <div class="col-lg-3">
+
+                        </div>
+                    	<div class="col-lg-6">
+                            <h2>ĐĂNG KÝ</h2>
+                        <div class="register-form">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Họ</label>
+                                        <input class="form-control" name="first_name" type="text" placeholder="Mời bạn nhập tên">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Tên</label>
+                                        <input class="form-control" name="last_name" type="text" placeholder="mời bạn nhập họ">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>E-mail</label>
+                                        <input class="form-control" name="email" type="text" placeholder="E-mail">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Tài khoản</label>
+                                        <input class="form-control" name="username" type="text" placeholder="Tài khoản">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Mật khẩu</label>
+                                        <input class="form-control" name="password1" type="text" placeholder="Mật khẩu">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Nhâp lại mật khẩu</label>
+                                        <input class="form-control" name="password2" type="text" placeholder="Nhập lại mật khẩu">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button class="btn">đăng ký ngay</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-3">
+
+                        </div>
+
+{#                    <div class="col-lg-6">#}
+{#                        <div class="section-title">#}
+{#                            <h3 class="title">Sign Up Form</h3>#}
+{#                        </div>#}
+{##}
+{#                        {% if messages %}#}
+{#                            {% for message in messages %}#}
+{#                                <div class="alert alert-{{message.tags}}" role="alert">#}
+{#                                    {{ message }}#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+{#                        {% endif %}#}
+{##}
+{#                        <form method="post">#}
+{#                            {% csrf_token %}#}
+{#                            {% for field in form %}#}
+{#                                <p>#}
+{#                                    {{ field.label_tag }}<br>#}
+{#                                    {{ field }}#}
+{#                                    {% if field.help_text %}#}
+{#                                        <small style="color: grey">{{ field.help_text }}</small>#}
+{#                                    {% endif %}#}
+{#                                    {% for error in field.errors %}#}
+{#                                        <p style="color: red">{{ error }}</p>#}
+{#                                    {% endfor %}#}
+{#                                </p>#}
+{#                            {% endfor %}#}
+{#                            <button class="btn" type="submit">Sign up</button>#}
+{#                        </form>#}
+{##}
+{##}
+{##}
+{#                    </div>#}
+
+                </div>
+            </div>
+        </div>
+        <!-- Login End -->
+    {% include 'home/footer.html' %}
+{% endblock %}

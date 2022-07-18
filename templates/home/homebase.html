@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+        <title>{% block title %} My Home Page {% endblock %}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta name="keywords"  content="{% block keywords %} Home Keywords {% endblock %}">
+        <meta name="description" content="{% block description %} Home description  {% endblock %}">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+{#        <!-- CSS Libraries -->#}
+{#        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">#}
+{#        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">#}
+{#        <link href="lib/slick/slick.css" rel="stylesheet">#}
+{#        <link href="lib/slick/slick-theme.css" rel="stylesheet">#}
+{##}
+{#        <!-- Template Stylesheet -->#}
+{#        <link href="css/style.css" rel="stylesheet">#}
+          <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+{#        <link href="lib/slick/slick.css" rel="stylesheet">#}
+{#        <link href="lib/slick/slick-theme.css" rel="stylesheet">#}
+
+        <!-- Template Stylesheet -->
+{#        <link href="css/style.css" rel="stylesheet">#}
+
+        <!-- jQuery !-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+            <!-- jQuery UI !-->
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'lib/slick/slick-theme.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'lib/slick/slick.css' %}">
+</head>
+<body>
+{% include 'home/header.html' %}
+{% block sidebar %} {% endblock %}
+{% block slider %} {% endblock %}
+{% block body %} {% endblock %}
+
+{% block footer %} {% endblock %}
+</body>
+</html>
